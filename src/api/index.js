@@ -1,1 +1,2 @@
-export const routes = []
+import Customer from './customer';
+export const routes = [...Customer];
