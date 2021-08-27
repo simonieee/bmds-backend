@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon --exec cross-env DB_SYNC=true NODE_ENV=development babel-node ./bin/www",
-    "start:prod": "nodemon --exec cross-env NODE_ENV=production babel-node ./bin/www"
+    "start:prod": "nodemon --exec cross-env NODE_ENV=production babel-node ./bin/www",
+    "deploy": "npm ci && pm2 start ./deploy.json"
   },
   "dependencies": {
     "aws-sdk": "^2.890.0",
