@@ -60,4 +60,23 @@ export default class CustomerService {
       throw e.message;
     }
   }
+
+  async loginCustomer(customerInfo) {
+    try {
+      const { email, password } = customerInfo;
+      const query = CustomerQuery.loginCustomer();
+      const [result] = await models.sequelize.query(query, {
+        type: models.sequelize.QueryTypes.SELECT,
+        replacements: { email, password },
+      });
+      if (!result) {
+        throw new Error('회원정보가 일치하지 않습니다.');
+      }
+      return result;
+    } catch (e) {
+      console.log(e);
+      logger.error(`[CustomerService][loginCustomer] Error ${e.message}`);
+      throw e;
+    }
+  }
 }
