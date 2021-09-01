@@ -24,7 +24,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd ~/bmds-backend
+            cd ~/backend
             git pull origin main
             pm2 delete all
             npm run deploy
