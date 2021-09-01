@@ -1,2 +1,4 @@
 import Customer from './customer';
-export const routes = [...Customer];
+import Expert from './expert';
+import Auth from './auth';
+export const routes = [...Customer, ...Expert, ...Auth];
