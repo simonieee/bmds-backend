@@ -7,7 +7,6 @@ export default {
         customer_mail,
         customer_pw,
         customer_tel,
-        customer_addr,
         customer_company,
         created_at,
         modified_at
@@ -22,7 +21,6 @@ export default {
         customer_mail,
         customer_pw,
         customer_tel,
-        customer_addr,
         customer_company,
         created_at,
         modified_at
@@ -38,7 +36,6 @@ export default {
       customer_nm,
       customer_mail,
       customer_tel,
-      customer_addr,
       customer_company,
       created_at,
       modified_at
