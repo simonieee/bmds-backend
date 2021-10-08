@@ -26,6 +26,11 @@ export default class FieldService {
     }
   }
 
+  /**
+   * 전문분야 조회
+   * --
+   * @returns
+   */
   async getFieldList() {
     try {
       const query = FieldQuery.getFieldList();
