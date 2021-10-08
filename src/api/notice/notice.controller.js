@@ -60,7 +60,7 @@ export default [
    * --
    */
   {
-    path: '/notice/detail/:notice_id',
+    path: '/notice/:notice_id',
     method: 'get',
     middleware: [],
     controller: async (req, res, next) => {

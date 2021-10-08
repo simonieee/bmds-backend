@@ -46,7 +46,7 @@ module.exports = (sequelize) => {
 
   /* Relations */
   notice_file.associate = (models) => {
-    notice_file.hasMany(models.notice, {
+    notice_file.belongsTo(models.notice, {
       foreignKey: {
         name: 'notice_id',
       },
