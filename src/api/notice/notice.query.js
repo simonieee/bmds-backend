@@ -12,4 +12,19 @@ export default {
     FROM
         t_notice tn`;
   },
+  getNoticeDetail() {
+    return `
+    SELECT
+      tn.notice_id,
+      tn.notice_title,
+      tn.notice_content,
+      tn.notice_hit,
+      tn.created_at,
+      tn.modified_at
+    FROM
+      t_notice tn
+    WHERE
+      tn.notice_id = :notice_id
+    `;
+  },
 };

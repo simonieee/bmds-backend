@@ -190,7 +190,6 @@ export default class S3Manager {
    * --
    */
   async _upload(folderName, file) {
-    console.log(file);
     return await new Promise(async (resolove, reject) => {
       // 키 생성
       const { mimetype, buffer } = file;
@@ -221,7 +220,6 @@ export default class S3Manager {
    * --
    */
   async _multiUpload(folderName, files) {
-    console.log(files);
     return await new Promise(async (resolove, reject) => {
       try {
         if (files.length === 0) {

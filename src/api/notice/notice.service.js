@@ -16,11 +16,16 @@ export default class NoticeService {
   async insertNotice(noticeInfo) {
     const transaction = await models.sequelize.transaction();
     try {
-      const { notice_file, noticeFiles } = noticeInfo;
+      const { notice_file } = noticeInfo;
       const result = await models.notice.create(noticeInfo, { transaction });
 
-      if (notice_file && isArray(notice_file)) {
-        await models.notice_file.bulkCreate(notice_file, { transaction });
+      if (notice_file) {
+        const { notice_id } = result;
+
+        const noticeFiles = notice_file.map((item) => {
+          return { ...item, notice_id };
+        });
+        await models.notice_file.bulkCreate(noticeFiles, { transaction });
       }
       await transaction.commit();
       return result;
@@ -60,15 +65,16 @@ export default class NoticeService {
   async getNoticeDetail(noticeInfo) {
     try {
       const { notice_id } = noticeInfo;
+      const query = NoticeQuery.getNoticeDetail();
       const [result] = await models.sequelize.query(query, {
         type: models.sequelize.QueryTypes.SELECT,
         replacements: { notice_id },
       });
 
       const NoticeFileServiceInstance = Container.get(NoticeFileService);
-      const notice_file = await NoticeFileServiceInstance.getNoticeFile(
-        notice_id
-      );
+      const notice_file = await NoticeFileServiceInstance.getNoticeFile({
+        notice_id,
+      });
       return { ...result, notice_file };
     } catch (e) {
       console.log(e);
