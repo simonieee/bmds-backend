@@ -1,23 +1,22 @@
 import { Container } from 'typedi';
 import { UserAuthenticator } from '../../middlewares/Authenticator';
 import JWTManager from '../../utils/JWTManager';
-import CustomerService from './customer.service';
-let CustomerServiceInstance = Container.get(CustomerService);
+import CustomerFieldService from './customer.field.service';
+let CustomerFieldServiceInstance = Container.get(CustomerFieldService);
 
 export default [
   /**
-   * [POST] 고객 정보 등록 컨트롤러
+   * [POST] 고객 전문분야 등록
    * --
    */
   {
-    path: '/customer',
+    path: '/field/customer',
     method: 'post',
     middleware: [],
     controller: async (req, res, next) => {
       try {
-        const resultData = await CustomerServiceInstance.insertCustomer(
-          req.body
-        );
+        const resultData =
+          await CustomerFieldServiceInstance.insertCustomerField(req.body);
         return res.status(200).json({
           status: 200,
           message: 'success',
@@ -32,42 +31,18 @@ export default [
       }
     },
   },
+
   /**
-   * [GET] 고객 전체 목록 조회
+   * [GET] 고객 전문분야 조회
    * --
    */
   {
-    path: '/customer/all',
+    path: '/field/customer/:customer_id',
     method: 'get',
     middleware: [],
     controller: async (req, res, next) => {
       try {
-        const resultData = await CustomerServiceInstance.getCustomerListAll();
-        return res.status(200).json({
-          status: 200,
-          message: 'success',
-          data: resultData,
-        });
-      } catch (error) {
-        return res.status(500).json({
-          status: 500,
-          message: 'failed',
-          data: error,
-        });
-      }
-    },
-  },
-  /**
-   * [GET] 고객 상세정보 조회 컨트롤러
-   * --
-   */
-  {
-    path: '/customer/detail/:customer_id',
-    method: 'get',
-    middleware: [],
-    controller: async (req, res, next) => {
-      try {
-        const resultData = await CustomerServiceInstance.getCustomerDetail(
+        const resultData = await CustomerFieldServiceInstance.getCustomerField(
           req.params
         );
         return res.status(200).json({
@@ -86,18 +61,17 @@ export default [
   },
 
   /**
-   * [PUT] 고객 정보 수정
+   * [DELETE] 고객 전문분야 삭제
    * --
    */
   {
-    path: '/customer',
-    method: 'put',
+    path: '/filed/customer',
+    method: 'delete',
     middleware: [],
     controller: async (req, res, next) => {
       try {
-        const resultData = await CustomerServiceInstance.updateCustomer(
-          req.body
-        );
+        const resultData =
+          await CustomerFieldServiceInstance.deleteCustomerField(req.body);
         return res.status(200).json({
           status: 200,
           message: 'success',
