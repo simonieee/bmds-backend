@@ -4,6 +4,9 @@ import Auth from './auth';
 import Field from './field';
 import Faq from './faq';
 import Voucher from './voucher';
+import Notice from './notice';
+import File from './file';
+
 export const routes = [
   ...Customer,
   ...Expert,
@@ -11,4 +14,6 @@ export const routes = [
   ...Field,
   ...Faq,
   ...Voucher,
+  ...Notice,
+  ...File,
 ];
