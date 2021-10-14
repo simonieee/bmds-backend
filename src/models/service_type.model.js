@@ -12,34 +12,17 @@ module.exports = (sequelize) => {
         type: STRING(36),
         primaryKey: true,
         defaultValue: UUIDV4,
-        comment: '고객 고유번호',
+        comment: '유형 고유번호',
       },
-      service_nm: {
+      service_title: {
         type: STRING(255),
         allowNull: false,
-        comment: '고객 이름',
+        comment: '서비스명',
       },
-      service_type_pw: {
+      service_desc: {
         type: STRING(255),
         allowNull: false,
-        comment: '고객 로그인 비밀번호',
-      },
-      service_type_tel: {
-        type: STRING(255),
-        allowNull: false,
-        unique: true,
-        comment: '고객 전화번호',
-      },
-      service_type_mail: {
-        type: STRING(255),
-        allowNull: false,
-        unique: true,
-        comment: '고객 메일',
-      },
-      service_type_company: {
-        type: STRING(255),
-        allowNull: true,
-        comment: '고객 소속',
+        comment: '서비스 설명',
       },
       created_at: {
         type: INTEGER,

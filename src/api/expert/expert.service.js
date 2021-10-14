@@ -172,8 +172,11 @@ export default class ExpertService {
           { transaction }
         );
       }
+
+      await transaction.commit();
       return result;
     } catch (e) {
+      await transaction.rollback();
       console.log(e);
       logger.error(`[ExpertService][updateExpert] Error ${e.message}`);
       throw e.message;
