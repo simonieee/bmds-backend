@@ -50,7 +50,9 @@ export default class ExpertService {
         const expertFieldTemp = expert_field.map((item) => {
           return { ...item, expert_id };
         });
-        expert_fields = await models.expert_field.bulkCreate(expertFieldTemp);
+        expert_fields = await models.expert_field.bulkCreate(expertFieldTemp, {
+          transaction,
+        });
       }
       await transaction.commit();
       return { ...expert, expert_field: expert_fields };
