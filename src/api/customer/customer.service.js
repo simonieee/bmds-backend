@@ -27,7 +27,7 @@ export default class CustomerService {
         );
       }
       await transaction.commit();
-      return { ...result, customer_fields };
+      return { ...result, customer_field: customer_fields };
     } catch (e) {
       await transaction.rollback();
       console.log(e);
@@ -118,23 +118,17 @@ export default class CustomerService {
       );
 
       if (customer_field) {
-        const filedPromise = customer_field.map(async (item) => {
-          const { field_id, remove, add } = item;
-          if (remove) {
-            await models.customer_field.destroy(
-              { where: { customer_id, field_id } },
-              { transaction }
-            );
-          }
-          if (add) {
-            await models.customer_field.create(
-              { customer_id, field_id },
-              { transaction }
-            );
-          }
-          return 1;
-        });
-        await Promise.all(filedPromise);
+        const addField = customer_field
+          .filter((item) => item.add)
+          .map((item) => {
+            return { ...item, customer_id };
+          });
+        await models.customer_field.bulkCreate(addField, { transaction });
+        const removeField = customer_field.filter((item) => item.remove);
+        await models.customer_field.destroy(
+          { where: { expert_id, field_id: removeField } },
+          { transaction }
+        );
       }
 
       await transaction.commit();
