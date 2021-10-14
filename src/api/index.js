@@ -8,6 +8,7 @@ import Faq from './faq';
 import Voucher from './voucher';
 import Notice from './notice';
 import File from './file';
+import Schedule from './schedule';
 
 export const routes = [
   // 사용자
@@ -17,6 +18,9 @@ export const routes = [
   ...Field,
   ...CustomerField,
   ...ExpertField,
+
+  // 멘토링
+  ...Schedule,
 
   // 이용권 및 결제
   ...Voucher,
