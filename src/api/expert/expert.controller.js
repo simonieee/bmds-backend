@@ -10,7 +10,7 @@ export default [
    * --
    */
   {
-    path: '/exeprt',
+    path: '/expert',
     method: 'post',
     middleware: [],
     controller: async (req, res, next) => {
