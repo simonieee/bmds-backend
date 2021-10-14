@@ -16,7 +16,10 @@ export default [
     file: 'multiple',
     controller: async (req, res, next) => {
       try {
-        const resultData = await FileServiceInstance.uploadFile(req.files);
+        const resultData = await FileServiceInstance.uploadFile({
+          files: req.files,
+          dirInfo: req.body,
+        });
         return res.status(200).json({
           status: 200,
           message: 'success',
