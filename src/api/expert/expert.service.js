@@ -104,8 +104,6 @@ export default class ExpertService {
         type: models.sequelize.QueryTypes.SELECT,
         replacements: { expert_id },
       });
-
-      const { expert_id } = expert;
       const ExpertFieldServiceInstance = Container.get(ExpertFieldService);
 
       const expert_field = await ExpertFieldServiceInstance.getExpertField({
