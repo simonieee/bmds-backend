@@ -18,7 +18,7 @@ export default [
       try {
         const resultData = await FileServiceInstance.uploadFile({
           files: req.files,
-          dirInfo: req.body,
+          dirInfo: req.body.dirInfo,
         });
         return res.status(200).json({
           status: 200,

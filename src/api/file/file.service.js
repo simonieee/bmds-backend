@@ -7,9 +7,8 @@ export default class FileService {
   async uploadFile(fileInfo) {
     try {
       const { files, dirInfo } = fileInfo;
-      const { dir_nm } = dirInfo;
       const S3 = new S3Manager();
-      const result = await S3._multiUpload(dir_nm, files);
+      const result = await S3._multiUpload(dirInfo, files);
       return result;
     } catch (e) {
       console.log(e);
