@@ -14,7 +14,7 @@ export default class ScheduleService {
     try {
       const { schedules } = scheduleInfo;
       if (schedules) {
-        const result = await models.schedule.bulkCreate(scheduleInfo);
+        const result = await models.schedule.bulkCreate(schedules);
         return result;
       }
       const result = await models.schedule.create(scheduleInfo);
@@ -74,7 +74,7 @@ export default class ScheduleService {
   async deleteSchedule(scheduleInfo) {
     try {
       const { schedule_id } = scheduleInfo;
-      const result = await models.schedule.destroy({ where: schedule_id });
+      const result = await models.schedule.destroy({ where: { schedule_id } });
       return result;
     } catch (e) {
       console.log(e);
