@@ -1,3 +1,4 @@
+import Admin from './admin';
 import Customer from './customer';
 import Expert from './expert';
 import Auth from './auth';
@@ -12,6 +13,7 @@ import Schedule from './schedule';
 
 export const routes = [
   // 사용자
+  ...Admin,
   ...Customer,
   ...Expert,
   ...Auth,
