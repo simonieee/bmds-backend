@@ -138,6 +138,7 @@ export default class ExpertService {
         expert_img,
         expert_resume,
         expert_field,
+        expert_introduce,
       } = expertInfo;
       const result = await models.expert.update(
         {
@@ -147,6 +148,7 @@ export default class ExpertService {
           expert_company,
           expert_img,
           expert_resume,
+          expert_introduce,
         },
         {
           where: {

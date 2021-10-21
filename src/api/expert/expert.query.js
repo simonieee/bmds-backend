@@ -10,6 +10,7 @@ export default {
         expert_company,
         expert_img,
         expert_resume,
+        expert_introduce,
         created_at,
         modified_at
     FROM
@@ -30,6 +31,7 @@ export default {
         expert_company,
         expert_img,
         expert_resume,
+        expert_introduce,
         created_at,
         modified_at
       FROM
@@ -46,6 +48,7 @@ export default {
         expert_company,
         expert_img,
         expert_resume,
+        expert_introduce,
         created_at,
         modified_at
       FROM
