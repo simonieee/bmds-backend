@@ -31,6 +31,8 @@ export default {
     WHERE
       expert_id = :expert_id
     AND
-      schedule_date = :schedule_date;`;
+      schedule_date = :schedule_date
+    ORDER BY
+      schedule_time ASC;`;
   },
 };
