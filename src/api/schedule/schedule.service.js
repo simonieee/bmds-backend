@@ -34,11 +34,24 @@ export default class ScheduleService {
   async getScheduleList(scheduleInfo) {
     try {
       const { expert_id } = scheduleInfo;
-      const query = ScheduleQuery.getScheduleList();
-      const result = await models.sequelize.query(query, {
+      // 전문가 예약 일자 조회
+      const dateQuery = ScheduleQuery.getDateSchedule();
+      const date_list = await models.sequelize.query(dateQuery, {
         type: models.sequelize.QueryTypes.SELECT,
         replacements: { expert_id },
       });
+
+      // 전문가 예약 일자별 시간 조회
+      const schedulePromise = date_list.map(async (item) => {
+        const { schedule_date } = item;
+        const timeQuery = ScheduleQuery.getTimeSchedule();
+        const schedule_time = await models.sequelize.query(timeQuery, {
+          type: models.sequelize.QueryTypes.SELECT,
+          replacements: { expert_id, schedule_date, reservation_yn: true },
+        });
+        return { ...item, schedule_times: schedule_time };
+      });
+      const result = await Promise.all(schedulePromise);
       return result;
     } catch (e) {
       console.log(e);
