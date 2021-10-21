@@ -1,8 +1,7 @@
 'use strict';
-const { literal } = require('sequelize');
 const Sequelize = require('sequelize');
 
-const { INTEGER, UUIDV4, STRING } = Sequelize;
+const { INTEGER, UUIDV4, STRING, TEXT, literal } = Sequelize;
 
 module.exports = (sequelize) => {
   const expert = sequelize.define(
@@ -49,6 +48,11 @@ module.exports = (sequelize) => {
       },
       expert_resume: {
         type: STRING(255),
+        allowNull: true,
+        comment: '전문가 이력서',
+      },
+      expert_introduce: {
+        type: TEXT,
         allowNull: true,
         comment: '전문가 이력서',
       },
