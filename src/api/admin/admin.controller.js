@@ -1,21 +1,22 @@
 import { Container } from 'typedi';
 import { UserAuthenticator } from '../../middlewares/Authenticator';
+import MailValidator from '../../middlewares/MailValidator';
 import JWTManager from '../../utils/JWTManager';
-import AuthService from './auth.service';
-let AuthServiceInstance = Container.get(AuthService);
+import AdminService from './admin.service';
+let AdminServiceInstance = Container.get(AdminService);
 
 export default [
   /**
-   * [POST] 회원 로그인 요청
+   * [POST] 괸리자 정보 등록
    * --
    */
   {
-    path: '/auth/login/customer',
+    path: '/admin',
     method: 'post',
-    middleware: [],
+    middleware: [MailValidator],
     controller: async (req, res, next) => {
       try {
-        const resultData = await AuthServiceInstance.loginCustomer(req.body);
+        const resultData = await AdminServiceInstance.insertAdmin(req.body);
         return res.status(200).json({
           status: 200,
           message: 'success',
@@ -31,16 +32,16 @@ export default [
     },
   },
   /**
-   * [POST] 전문가 로그인 요청
+   * [GET] 관리자 정보 조회
    * --
    */
   {
-    path: '/auth/login/expert',
-    method: 'post',
+    path: '/admin',
+    method: 'get',
     middleware: [],
     controller: async (req, res, next) => {
       try {
-        const resultData = await AuthServiceInstance.loginExpert(req.body);
+        const resultData = await AdminServiceInstance.getAdminList();
         return res.status(200).json({
           status: 200,
           message: 'success',
@@ -55,17 +56,18 @@ export default [
       }
     },
   },
+
   /**
-   * [POST] 관리자 로그인 요청
+   * [PUT] 관리자 정보 수정
    * --
    */
   {
-    path: '/auth/login/admin',
-    method: 'post',
+    path: '/admin',
+    method: 'put',
     middleware: [],
     controller: async (req, res, next) => {
       try {
-        const resultData = await AuthServiceInstance.loginAdmin(req.body);
+        const resultData = await AdminServiceInstance.updateAdmin(req.body);
         return res.status(200).json({
           status: 200,
           message: 'success',
@@ -80,17 +82,18 @@ export default [
       }
     },
   },
+
   /**
-   * [POST] 통합 로그인
+   * [DELETE] 관리자 정보 삭제
    * --
    */
   {
-    path: '/auth/login',
-    method: 'post',
+    path: '/admin',
+    method: 'delete',
     middleware: [],
     controller: async (req, res, next) => {
       try {
-        const resultData = await AuthServiceInstance.loginTotal(req.body);
+        const resultData = await AdminServiceInstance.deleteAdmin(req.body);
         return res.status(200).json({
           status: 200,
           message: 'success',
