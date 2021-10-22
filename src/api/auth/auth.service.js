@@ -1,12 +1,12 @@
-import moment from 'moment';
-import models from '../../models';
-import JWTManager from '../../utils/JWTManager';
-import { logger } from '../../utils/winstonLogger';
-import ExpertService from '../expert/expert.service';
-import CustomerService from '../customer/customer.service';
-import AdminService from '../admin/admin.service';
-import AuthQuery from './auth.query';
-import Container from 'typedi';
+import moment from "moment";
+import models from "../../models";
+import JWTManager from "../../utils/JWTManager";
+import { logger } from "../../utils/winstonLogger";
+import ExpertService from "../expert/expert.service";
+import CustomerService from "../customer/customer.service";
+import AdminService from "../admin/admin.service";
+import AuthQuery from "./auth.query";
+import Container from "typedi";
 
 export default class AuthService {
   /**
@@ -20,7 +20,7 @@ export default class AuthService {
       const ExpertServiceInstance = Container.get(ExpertService);
       const result = await ExpertServiceInstance.loginExpert(expertInfo);
       const JW = new JWTManager();
-      const token = await JW.createSign(result, '3h');
+      const token = await JW.createSign(result, "3h");
       return { ...result, token };
     } catch (e) {
       console.log(e);
@@ -39,7 +39,7 @@ export default class AuthService {
       const CustomerServiceInstance = Container.get(CustomerService);
       const result = await CustomerServiceInstance.loginCustomer(customerInfo);
       const JW = new JWTManager();
-      const token = await JW.createSign(result, '3h');
+      const token = await JW.createSign(result, "3h");
       return { ...result, token };
     } catch (e) {
       console.log(e);
@@ -59,7 +59,7 @@ export default class AuthService {
       const AdminServiceInstance = Container.get(AdminService);
       const [result] = await AdminServiceInstance.loginAdmin(adminInfo);
       const JW = new JWTManager();
-      const token = await JW.createSign(result, '3h');
+      const token = await JW.createSign(result, "3h");
       return { ...result, token };
     } catch (e) {
       console.log(e);
@@ -92,26 +92,26 @@ export default class AuthService {
           admin_mail: login_mail,
           admin_pw: login_pw,
         });
-        result.user_type = 'ADMIN';
+        result.user_type = "adm";
       } else if (customer_count) {
         const serviceInstance = Container.get(CustomerService);
         result = await serviceInstance.loginCustomer({
           email: login_mail,
           password: login_pw,
         });
-        result.user_type = 'CUSTOMER';
+        result.user_type = "customer";
       } else if (expert_count) {
         const serviceInstance = Container.get(ExpertService);
         result = await serviceInstance.loginExpert({
           email: login_mail,
           password: login_pw,
         });
-        result.user_type = 'EXPERT';
+        result.user_type = "expert";
       } else {
-        throw new Error('회원정보가 존재하지 않습니다.');
+        throw new Error("회원정보가 존재하지 않습니다.");
       }
       const JW = new JWTManager();
-      const token = await JW.createSign(result, '3h');
+      const token = await JW.createSign(result, "3h");
       return { ...result, token };
     } catch (e) {
       console.log(e);
