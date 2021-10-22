@@ -1,5 +1,6 @@
 import { Container } from 'typedi';
 import { UserAuthenticator } from '../../middlewares/Authenticator';
+import MailValidator from '../../middlewares/MailValidator';
 import JWTManager from '../../utils/JWTManager';
 import CustomerService from './customer.service';
 let CustomerServiceInstance = Container.get(CustomerService);
@@ -12,7 +13,7 @@ export default [
   {
     path: '/customer',
     method: 'post',
-    middleware: [],
+    middleware: [MailValidator],
     controller: async (req, res, next) => {
       try {
         const resultData = await CustomerServiceInstance.insertCustomer(

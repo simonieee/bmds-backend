@@ -1,5 +1,6 @@
 import { Container } from 'typedi';
 import { UserAuthenticator } from '../../middlewares/Authenticator';
+import MailValidator from '../../middlewares/MailValidator';
 import JWTManager from '../../utils/JWTManager';
 import AdminService from './admin.service';
 let AdminServiceInstance = Container.get(AdminService);
@@ -12,7 +13,7 @@ export default [
   {
     path: '/admin',
     method: 'post',
-    middleware: [],
+    middleware: [MailValidator],
     controller: async (req, res, next) => {
       try {
         const resultData = await AdminServiceInstance.insertAdmin(req.body);

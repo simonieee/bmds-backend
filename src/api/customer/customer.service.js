@@ -14,7 +14,9 @@ export default class CustomerService {
     const transaction = await models.sequelize.transaction();
     try {
       const { customer_field } = customerInfo;
-      const result = await models.customer.create(customerInfo);
+      const result = await models.customer.create(customerInfo, {
+        transaction,
+      });
 
       let customer_fields;
       if (customer_field) {
