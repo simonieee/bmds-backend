@@ -13,7 +13,7 @@ import Schedule from './schedule';
 import Research from './research';
 import ResearchCategory from './research.category';
 import EstimateType from './estimate.type';
-
+import EstimateItem from './estimate';
 export const routes = [
   // 사용자
   ...Admin,
@@ -29,6 +29,7 @@ export const routes = [
 
   // 이용권 및 결제
   ...Voucher,
+  ...EstimateItem,
 
   //관리자
   ...Faq,

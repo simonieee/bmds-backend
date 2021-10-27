@@ -81,7 +81,11 @@ export default class ExpertService {
         const expert_field = await ExpertFieldServiceInstance.getExpertField({
           expert_id,
         });
-        return { ...item, expert_field };
+        return {
+          ...item,
+          expert_grade: (Math.random() * 3 + 2).toFixed(1),
+          expert_field,
+        };
       });
       const result = await Promise.all(expertPromise);
       return result;
