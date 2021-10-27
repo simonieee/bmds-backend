@@ -10,7 +10,7 @@ import Voucher from './voucher';
 import Notice from './notice';
 import File from './file';
 import Schedule from './schedule';
-// import Research from './research';
+import Research from './research';
 import ResearchCategory from './research.category';
 
 export const routes = [
@@ -32,7 +32,7 @@ export const routes = [
   //관리자
   ...Faq,
   ...Notice,
-  // ...Research,
+  ...Research,
   ...ResearchCategory,
 
   //공통 모듈
