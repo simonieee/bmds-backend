@@ -30,7 +30,7 @@ module.exports = (sequelize) => {
         allowNull: false,
         comment: '예약 일자',
       },
-      estimate_type: {
+      contact_type: {
         type: ENUM(['OFFLINE', 'ONLINE']),
         allowNull: false,
         unique: true,
@@ -78,9 +78,9 @@ module.exports = (sequelize) => {
         name: 'customer_id',
       },
     });
-    estimate.belongsTo(models.service_type, {
+    estimate.belongsTo(models.estimate_type, {
       foreignKey: {
-        name: 'service_id',
+        name: 'type_id',
       },
     });
   };

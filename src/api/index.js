@@ -12,6 +12,7 @@ import File from './file';
 import Schedule from './schedule';
 import Research from './research';
 import ResearchCategory from './research.category';
+import EstimateType from './estimate.type';
 
 export const routes = [
   // 사용자
@@ -34,6 +35,7 @@ export const routes = [
   ...Notice,
   ...Research,
   ...ResearchCategory,
+  ...EstimateType,
 
   //공통 모듈
   ...File,
