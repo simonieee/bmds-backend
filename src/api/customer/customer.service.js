@@ -25,7 +25,8 @@ export default class CustomerService {
           return { ...itme, customer_id };
         });
         customer_fields = await models.customer_field.bulkCreate(
-          customerFieldTemp
+          customerFieldTemp,
+          { transaction }
         );
       }
       await transaction.commit();

@@ -19,13 +19,13 @@ module.exports = (sequelize) => {
         allowNull: false,
         comment: '요청 고객 이름',
       },
-      estimate_tel: {
+      contact_tel: {
         type: STRING(255),
         allowNull: false,
         unique: true,
         comment: '요청 고객 전화번호',
       },
-      estimate_date: {
+      contact_date: {
         type: STRING(255),
         allowNull: false,
         comment: '예약 일자',
