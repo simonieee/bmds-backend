@@ -89,10 +89,12 @@ export default class AdminService {
     try {
       const { admin_mail, admin_pw } = adminInfo;
       const query = AdminQuery.loginAdmin();
-      const result = await models.sequelize.query(query, {
+      console.log(adminInfo);
+      const [result] = await models.sequelize.query(query, {
         type: models.sequelize.QueryTypes.SELECT,
         replacements: { admin_mail, admin_pw },
       });
+      console.log(result);
       return result;
     } catch (e) {
       console.log(e);

@@ -24,6 +24,6 @@ export default {
     WHERE
         admin_mail = :admin_mail
     AND
-        admin_pw = :admin_pw`;
+        admin_pw = :admin_pw;`;
   },
 };
