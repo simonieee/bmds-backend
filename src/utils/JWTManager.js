@@ -36,6 +36,7 @@ export default class Authenticator {
    * decoded 전용
    */
   async decoded(token) {
-    return JWT.verify(token, jwtConfig.secret);
+    const [, rawToken] = token.split('Bearer ');
+    return JWT.verify(rawToken, jwtConfig.secret);
   }
 }
