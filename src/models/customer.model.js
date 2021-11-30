@@ -69,6 +69,11 @@ module.exports = (sequelize) => {
         name: 'customer_id',
       },
     });
+    customer.hasMany(models.bm, {
+      foreignKey: {
+        name: 'customer_id',
+      },
+    });
   };
 
   return customer;

@@ -14,6 +14,7 @@ import Research from './research';
 import ResearchCategory from './research.category';
 import EstimateType from './estimate.type';
 import EstimateItem from './estimate';
+import BM from './business.model';
 export const routes = [
   // 사용자
   ...Admin,
@@ -37,6 +38,9 @@ export const routes = [
   ...Research,
   ...ResearchCategory,
   ...EstimateType,
+
+  // 비즈니스 모델
+  ...BM,
 
   //공통 모듈
   ...File,

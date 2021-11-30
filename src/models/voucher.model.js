@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
         allowNull: false,
         comment: '이용권 유형',
       },
-      usage: {
+      voucher_usage: {
         type: BOOLEAN,
         allowNull: true,
         comment: '이용권 유형',
