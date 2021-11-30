@@ -38,20 +38,17 @@ module.exports = (sequelize) => {
       },
       bm_block1: {
         type: TEXT,
-        allowNull: false,
-        unique: true,
+        allowNull: true,
         comment: '캔버스 입력1',
       },
       bm_block2: {
         type: TEXT,
-        allowNull: false,
-        unique: true,
+        allowNull: true,
         comment: '캔버스 입력2',
       },
       bm_block3: {
         type: TEXT,
-        allowNull: false,
-        unique: true,
+        allowNull: true,
         comment: '캔버스 입력3',
       },
     },
