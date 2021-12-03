@@ -15,7 +15,13 @@ module.exports = (sequelize) => {
         comment: '비즈니스 모델 고유번호',
       },
       bm_type: {
-        type: ENUM('DEFAULT'),
+        type: ENUM([
+          'DEFAULT',
+          'SHARED_VALUE',
+          'SERVICE',
+          'PLATFORM',
+          'KNOWLEDGE_SERVICE',
+        ]),
         allowNull: false,
         defaultValue: 'DEFAULT',
         comment: '비즈니스 모델 타입',
@@ -30,6 +36,11 @@ module.exports = (sequelize) => {
         allowNull: false,
         unique: true,
         comment: '비즈니스 모델 설명',
+      },
+      bm_color: {
+        type: STRING(255),
+        allowNull: false,
+        comment: '비즈니스 모델 색상',
       },
       created_at: {
         type: INTEGER,

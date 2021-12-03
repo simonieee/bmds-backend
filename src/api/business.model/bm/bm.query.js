@@ -7,6 +7,7 @@ export default {
         tbm.bm_type,
         tbm.bm_title,
         tbm.bm_desc,
+        tbm.bm_color,
         tbm.created_at,
         tbm.modified_at,
         tc.customer_nm
@@ -22,6 +23,7 @@ export default {
       tbm.bm_type,
       tbm.bm_title,
       tbm.bm_desc,
+      tbm.bm_color,
       tbm.created_at,
       tbm.modified_at,
       tc.customer_nm
