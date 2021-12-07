@@ -99,13 +99,14 @@ export default class BMService {
    */
   async updateBM(bmInfo) {
     try {
-      const { bm_id, bm_type, bm_title, bm_desc } = bmInfo;
+      const { bm_id, bm_type, bm_title, bm_desc, bm_color } = bmInfo;
 
       const result = await models.bm.update(
         {
           bm_type,
           bm_title,
           bm_desc,
+          bm_color,
           modified_at: models.sequelize.literal('UNIX_TIMESTAMP()'),
         },
         { where: { bm_id } }
