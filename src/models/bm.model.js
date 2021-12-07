@@ -15,13 +15,7 @@ module.exports = (sequelize) => {
         comment: '비즈니스 모델 고유번호',
       },
       bm_type: {
-        type: ENUM([
-          'DEFAULT',
-          'SHARED_VALUE',
-          'SERVICE',
-          'PLATFORM',
-          'KNOWLEDGE_SERVICE',
-        ]),
+        type: ENUM(['DEFAULT', 'SERVICE', 'PLATFORM', 'KNOWLEDGE_SERVICE']),
         allowNull: false,
         defaultValue: 'DEFAULT',
         comment: '비즈니스 모델 타입',
