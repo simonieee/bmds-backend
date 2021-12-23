@@ -121,4 +121,24 @@ export default class AuthService {
       throw e.message;
     }
   }
+
+  /**
+   * 토큰 인증
+   * --
+   * @param {Object} authInfo 인증 정보
+   * @returns
+   */
+  async verify(authInfo) {
+    try {
+      const { authorization } = authInfo;
+      const [, token] = authorization.split('Bearer ');
+      const jm = new JWTManager();
+      const result = await jm.verify(token);
+      return result;
+    } catch (e) {
+      console.log(e);
+      logger.error(`[AuthService][verify] Error ${e.message}`);
+      throw e.message;
+    }
+  }
 }
