@@ -80,4 +80,55 @@ export default [
       }
     },
   },
+  /**
+   * [POST] 통합 로그인
+   * --
+   */
+  {
+    path: '/auth/login',
+    method: 'post',
+    middleware: [],
+    controller: async (req, res, next) => {
+      try {
+        const resultData = await AuthServiceInstance.loginTotal(req.body);
+        return res.status(200).json({
+          status: 200,
+          message: 'success',
+          data: resultData,
+        });
+      } catch (error) {
+        return res.status(500).json({
+          status: 500,
+          message: 'failed',
+          data: error,
+        });
+      }
+    },
+  },
+
+  /**
+   * [POST] 사용자 토큰 인증
+   * --
+   */
+  {
+    path: '/auth/verify',
+    method: 'post',
+    middleware: [UserAuthenticator],
+    controller: async (req, res, next) => {
+      try {
+        const resultData = await AuthServiceInstance.verify(req.headers);
+        return res.status(200).json({
+          status: 200,
+          message: 'success',
+          data: resultData,
+        });
+      } catch (error) {
+        return res.status(500).json({
+          status: 500,
+          message: 'failed',
+          data: error,
+        });
+      }
+    },
+  },
 ];

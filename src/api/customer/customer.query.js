@@ -7,7 +7,6 @@ export default {
         customer_mail,
         customer_pw,
         customer_tel,
-        customer_addr,
         customer_company,
         created_at,
         modified_at
@@ -22,7 +21,6 @@ export default {
         customer_mail,
         customer_pw,
         customer_tel,
-        customer_addr,
         customer_company,
         created_at,
         modified_at
@@ -38,7 +36,6 @@ export default {
       customer_nm,
       customer_mail,
       customer_tel,
-      customer_addr,
       customer_company,
       created_at,
       modified_at
@@ -49,5 +46,16 @@ export default {
     AND
       customer_pw = :password;
     `;
+  },
+  getCustomerField() {
+    return `
+    SELECT
+      tcf.field_id,
+      tf.field_nm
+    FROM
+      t_customer_field tcf
+      INNER JOIN t_field tf ON tf.field_id = tcf.field_id
+    WHERE
+      tcf.customer_id = :customer_id`;
   },
 };

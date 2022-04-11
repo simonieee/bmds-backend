@@ -1,5 +1,6 @@
 import { Container } from 'typedi';
 import { UserAuthenticator } from '../../middlewares/Authenticator';
+import MailValidator from '../../middlewares/MailValidator';
 import JWTManager from '../../utils/JWTManager';
 import CustomerService from './customer.service';
 let CustomerServiceInstance = Container.get(CustomerService);
@@ -12,7 +13,7 @@ export default [
   {
     path: '/customer',
     method: 'post',
-    middleware: [],
+    middleware: [MailValidator],
     controller: async (req, res, next) => {
       try {
         const resultData = await CustomerServiceInstance.insertCustomer(
@@ -69,6 +70,34 @@ export default [
       try {
         const resultData = await CustomerServiceInstance.getCustomerDetail(
           req.params
+        );
+        return res.status(200).json({
+          status: 200,
+          message: 'success',
+          data: resultData,
+        });
+      } catch (error) {
+        return res.status(500).json({
+          status: 500,
+          message: 'failed',
+          data: error,
+        });
+      }
+    },
+  },
+
+  /**
+   * [PUT] 고객 정보 수정
+   * --
+   */
+  {
+    path: '/customer',
+    method: 'put',
+    middleware: [],
+    controller: async (req, res, next) => {
+      try {
+        const resultData = await CustomerServiceInstance.updateCustomer(
+          req.body
         );
         return res.status(200).json({
           status: 200,

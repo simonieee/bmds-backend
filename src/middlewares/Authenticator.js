@@ -18,8 +18,9 @@ export const UserAuthenticator = async (req, res, next) => {
       }
     }
     return res.status(401).json({
-      resultCode: 401,
-      resultMessage: 'Access denied',
+      status: 401,
+      data: false,
+      message: 'Access denied',
     });
   } catch (error) {}
 };

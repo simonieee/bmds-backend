@@ -2,7 +2,7 @@
 const { literal } = require('sequelize');
 const Sequelize = require('sequelize');
 
-const { INTEGER, BOOLEAN, UUIDV4, STRING, NOW, DATE } = Sequelize;
+const { INTEGER, UUIDV4, STRING } = Sequelize;
 
 module.exports = (sequelize) => {
   const customer = sequelize.define(
@@ -30,11 +30,6 @@ module.exports = (sequelize) => {
         allowNull: false,
         unique: true,
         comment: '고객 전화번호',
-      },
-      customer_addr: {
-        type: STRING(255),
-        allowNull: false,
-        comment: '고객 주소',
       },
       customer_mail: {
         type: STRING(255),
@@ -68,7 +63,18 @@ module.exports = (sequelize) => {
   );
 
   /* Relations */
-  customer.associate = (models) => {};
+  customer.associate = (models) => {
+    customer.hasMany(models.customer_field, {
+      foreignKey: {
+        name: 'customer_id',
+      },
+    });
+    customer.hasMany(models.bm, {
+      foreignKey: {
+        name: 'customer_id',
+      },
+    });
+  };
 
   return customer;
 };

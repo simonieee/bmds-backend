@@ -76,7 +76,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 routes.forEach((route) => {
   if (route.file)
     app[route.method](
-      route.path,
+      `/api/v1${route.path}`,
       [
         ...route.middleware,
         route.file === 'single'
@@ -85,7 +85,12 @@ routes.forEach((route) => {
       ],
       route.controller
     );
-  else app[route.method](route.path, [...route.middleware], route.controller);
+  else
+    app[route.method](
+      `/api/v1${route.path}`,
+      [...route.middleware],
+      route.controller
+    );
 });
 
 // catch 404 and forward to error handler
